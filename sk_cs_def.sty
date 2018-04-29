@@ -1,0 +1,42 @@
+\RequirePackage{listings}
+
+
+\lstdefinestyle{smallC}{%
+basicstyle=\scriptsize\ttfamily,
+numbers=left,
+keywordstyle=\color{red!80},
+numberstyle=\small,
+language=C,
+frame=tb,
+identifierstyle=\color{blue},
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false                 % show tabs within strings adding particular underscores
+}
+
+\lstdefinestyle{C}{%
+basicstyle=\small\ttfamily,
+numbers=left,
+keywordstyle=\color{red!80},
+numberstyle=\small,
+language=C,
+frame=tb,
+identifierstyle=\color{blue},
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false                 % show tabs within strings adding particular underscores
+}
+\lstdefinestyle{shell}{
+basicstyle=\ttfamily\bfseries\normalsize,
+title=shell,
+frame=tb,
+language=bash,
+}
+
+\lstdefinestyle{simpleshell}{
+basicstyle=\small\ttfamily\bfseries,
+frame=tb,
+language=bash,
+}
+
+\newcommand{\clang}[1]{\lstinline[style=smallC]{#1}}

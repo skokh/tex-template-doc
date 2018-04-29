@@ -1,0 +1,96 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage[left=2.00cm, right=2.00cm, top=2.00cm, bottom=2.00cm]{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{sk_colors_def}
+\usepackage{sk_cs_def}
+\usepackage{sk_macros}
+\usepackage{csquotes}
+\usepackage{dirtree}
+\usepackage{empheq}
+\usepackage{bm}
+
+% french stuff
+\usepackage[french]{babel}
+\frenchbsetup{og = �, fg = �}
+
+\title{template doc}
+\date{}
+\author{}
+
+\begin{document}
+
+Voici du texte \emphg{bla}
+
+
+Voici un système d'équations
+\begin{subequations}
+\begin{empheq}[left=\empheqlbrace]{align}
+x &= a, 
+\label{eq: system x eq}
+\\
+z &= f.
+\label{eq: system z eq}
+\end{empheq}
+\label{eq: system}
+\end{subequations}
+
+des caractères gras en mode math (avec le package bm):  
+$\bm{A}$, $\bm{f}$, $\bm{\mathrm{A}}$, $\bm{\alpha}$
+
+avec mathbf: $\mathbf{A}$
+
+
+\begin{compactitem}
+\item bla
+\item blabla
+\end{compactitem}
+\medskip
+
+\begin{compactitem}[$\bullet$]
+\item bla
+\item blabla
+\end{compactitem}
+
+\medskip
+
+Voici une liste imbriquée
+\begin{compactitem}[\hspace{1cm}$\bullet$]
+\item bla
+\item blabla
+\begin{compactitem}[\hspace{1cm}$\circ$]
+\item bla
+\item blabla
+\end{compactitem}
+\end{compactitem}
+
+
+\medskip
+
+\framebox{
+\begin{minipage}{.4\textwidth}
+\begin{center}
+Fig.~1~: structure du directory {\tt project\_dir} \\[5pt]
+\begin{minipage}{\textwidth}
+\dirtree{%
+.1 project\_dir.
+.2 Makefile.
+.2 myHeader.h.
+.2 globvar.h.
+.2 globvar.c.
+.2 file.c.
+.2 prog.c.
+}
+\end{minipage}
+\end{center}
+\end{minipage}
+}
+
+
+\end{document}
