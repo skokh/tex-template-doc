@@ -1,3 +1,12 @@
+
+%% the 2 next lines are helps texstudio set code+language 
+% !TeX encoding = UTF-8
+% !TeX spellcheck = fr_FR
+
+%% the next line helps texstsudio to set the root document
+% !TeX root = ./my_root_doc_name.tex
+
+
 \documentclass[10pt,a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
@@ -14,11 +23,43 @@
 \usepackage{csquotes}
 \usepackage{dirtree}
 \usepackage{empheq}
-\usepackage{bm}
+\usepackage{physics}
+\usepackage{mathtools}
+\usepackage{lastpage}
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable} %allows to have box spanning multiple pages
+\usepackage{todonotes}
+\usepackage{algpseudocode} % this loads the package algorithmicx
 
 % french stuff
 \usepackage[french]{babel}
 \frenchbsetup{og = �, fg = �}
+
+%lineo package and special patch for correcting missing numbering
+\usepackage[mathlines]{lineno}
+\linenumbers
+\newcommand*\patchAmsMathEnvironmentForLineno[1]{%
+  \expandafter\let\csname old#1\expandafter\endcsname\csname #1\endcsname
+  \expandafter\let\csname oldend#1\expandafter\endcsname\csname end#1\endcsname
+  \renewenvironment{#1}%
+     {\linenomath\csname old#1\endcsname}%
+     {\csname oldend#1\endcsname\endlinenomath}}% 
+\newcommand*\patchBothAmsMathEnvironmentsForLineno[1]{%
+  \patchAmsMathEnvironmentForLineno{#1}%
+  \patchAmsMathEnvironmentForLineno{#1*}}%
+\AtBeginDocument{%
+\patchBothAmsMathEnvironmentsForLineno{equation}%
+\patchBothAmsMathEnvironmentsForLineno{align}%
+\patchBothAmsMathEnvironmentsForLineno{flalign}%
+\patchBothAmsMathEnvironmentsForLineno{alignat}%
+\patchBothAmsMathEnvironmentsForLineno{gather}%
+\patchBothAmsMathEnvironmentsForLineno{multline}%
+}
+
+
+
+
+\newenvironment{skitemize}{\begin{compactitem}[\hspace{1cm}$\bullet$]}{\end{compactitem}}
 
 \title{template doc}
 \date{}
@@ -41,12 +82,34 @@ z &= f.
 \label{eq: system}
 \end{subequations}
 
-des caractères gras en mode math (avec le package bm):  
-$\bm{A}$, $\bm{f}$, $\bm{\mathrm{A}}$, $\bm{\alpha}$
+des caractères gras en mode math (avec le package physics):  
+$\vb{A}$, $\vb{f}$, gras et italique: $\vb*{A}$, $\vb*{\alpha}$ (pas de gras sans italique pour les lettres grecques)
 
 avec mathbf: $\mathbf{A}$
 
 
+Des dérivés avec physics.sty:
+\begin{align*}
+\pdv{f}{x}
+\\
+\dv{f}{x}
+\\
+\pdv{f}{x}{y}
+\\
+\pdv{f}{x}{y}
+\end{align*}
+
+Des cases à droite avec mathtools
+\begin{equation*}
+\begin{rcases*}
+x &= a
+\\
+y &= b
+\end{rcases*}
+\implies f(x) = 0
+\end{equation*}
+
+une list compactitem
 \begin{compactitem}
 \item bla
 \item blabla
@@ -91,6 +154,18 @@ Fig.~1~: structure du directory {\tt project\_dir} \\[5pt]
 \end{center}
 \end{minipage}
 }
+
+\bigskip
+
+Quelques opérateurs logiques: $\implies$ \quad $\iff$ \quad $\impliedby$
+
+
+\bigskip
+
+a text with a box
+\begin{tcolorbox}[title=My Box, colupper=red,colback=green!50!black,breakable]
+This is a box
+\end{tcolorbox}
 
 
 \end{document}
